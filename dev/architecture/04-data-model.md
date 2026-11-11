@@ -9,8 +9,8 @@ Status: draft for review.
 | id | text, primary key | Provider model ID |
 | name | text | Display name, defaults to id |
 | model_type | text | Text, image, classification, and so on |
-| input_price | real, nullable | Per million input tokens |
-| output_price | real, nullable | Per million output tokens |
+| input_price | real, nullable | Intended: per million input tokens. Currently always null; see below |
+| output_price | real, nullable | Intended: per million output tokens. Currently always null; see below |
 | context_window | integer, nullable | Tokens |
 | api_formats | text | JSON array of supported formats |
 | tools_supported | integer, nullable | 1, 0, or unknown |
@@ -19,6 +19,21 @@ Status: draft for review.
 | available | integer | 1 when present in the latest sync |
 | raw_json | text | Provider record, for audit |
 | catalog_updated_at | text | ISO timestamp of last sync |
+
+### Fields RouteLLM returns versus fields the parser reads
+
+Observed in the stored `raw_json` of 132 models (87 of type `text_generation`):
+
+| Meaning | RouteLLM field (observed) | Parser reads | Ticket |
+| --- | --- | --- | --- |
+| Input price | `input_token_rate`, string, for example `'0.000002'` | `input_price_per_million_tokens` and similar | ERR-001, ERR-002 |
+| Output price | `output_token_rate`, string | `output_price_per_million_tokens` and similar | ERR-001, ERR-002 |
+| Cached input price | `cached_input_token_rate` | not read | ERR-001 |
+| Context window | `context_length` | `context_length` (read) | none |
+| Tool support | `tools`, boolean | `supports_tools`, `tool_calling`, `function_calling` | ERR-003 |
+
+The rates look per-token, not per million; the response has no unit field, so this is an inference
+and needs confirming (ERR-002). Result today: 0 of 132 models have a price and 0 have a quality tier.
 
 ## blacklist
 

@@ -4,10 +4,12 @@ Status: draft for review.
 
 ## Phase 1 — Working single-provider router
 
-- Repair the current code so it compiles: remove the undefined startup catalog access and expose the
-  catalog instance to the startup sync.
+- Done (ERR-010): the code compiles; the startup sync now receives the catalog instance.
+- Open: read RouteLLM's real price and tool fields (ERR-001 to ERR-003) and decide how tiers are
+  assigned (ERR-004). Without these no model is eligible.
+- Open: fix the stale `.env.example` and tests (ERR-006, ERR-007).
 - SQLite catalog, blacklist, decisions and feedback tables.
-- Catalog sync at startup and on an interval.
+- Catalog sync at startup and on an interval (working: 132 models synchronised).
 - Eligibility filter and selector as described in the architecture.
 - Admin endpoints with token authentication.
 - Tests for parsing, eligibility, selection, blacklist enforcement, streaming and admin auth.

@@ -2,7 +2,8 @@
 
 Status: draft. These are questions, not decisions.
 
-1. Where does the project finally live: `GS-LLMRouter/` at the top level, or nested as it is now?
+1. Decided: only the application lives in `GS-LLMRouter/GS-LLMRouter/`; documentation, tickets and
+   planning live in the project root (`dev/`).
 2. Is the blacklist seeded from configuration only, or also editable through the admin API in
    production?
 3. What quality tier does each model get, and who reviews it?

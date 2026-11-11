@@ -21,7 +21,7 @@ chat-completion requests to Abacus RouteLLM. It is a prototype, not production-r
   tools. Complex requests need a model with quality tier 3 or higher. Among eligible models the
   router ranks by recorded success rate, then estimated cost. See `../dev/architecture/`.
 - Admin endpoints (`/admin/*`) require `ROUTER_ADMIN_TOKEN` as a bearer token. Sync the catalog with
-  `POST /admin/sync`; the startup and interval sync currently does not compile (see
+  `POST /admin/sync`; the catalog is also synced at startup and on an interval (see
   `../dev/architecture/02-components.md`).
 
 The router cannot protect against an upstream service silently changing or falling back to a different

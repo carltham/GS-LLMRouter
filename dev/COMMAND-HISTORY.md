@@ -2,6 +2,20 @@
 
 Verbatim messages sent by the user in this chat, newest first. Each number is the order in which the message was sent, so 1 is the first message. The pasted usage notice is included as part of the message in which it appeared. At most 100 records are kept; when a new message would exceed that, the oldest records are dropped.
 
+- **57.** `Give me a commit message for it all, 10 rows, copyable`
+- **56.** `update it all`
+- **55.** `including tickets`
+- **54.** `Not editing is the developed files`
+- **53.** `Why is command history not updated?`
+- **52.** `Ok, it seems to be fixed`
+- **51.** `Done`
+- **50.** `The dat files are on github`
+- **49.** `Give me a commit message for it all, 10 rows, copyable`
+- **48.** `there are eror tickets and should be created as such`
+- **47.** `When the router selects a model, is it getting information about the costs for the call?`
+- **46.** `It contains nothing yet`
+- **45.** `Give me a command for force push`
+- **44.** `So an amended commit message`
 - **43.** `Apache-2.0`
 - **42.** `List suitable licences`
 - **41.** `What licence would be suitable here, I might change it to private later on`

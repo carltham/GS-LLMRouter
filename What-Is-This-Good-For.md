@@ -31,8 +31,8 @@ Status: development prototype. It is not production-ready.
 
 ## Not good for (today)
 
-- **Production use.** There is no automatic retry or fallback, and the startup/interval catalog sync is
-  broken; sync with `POST /admin/sync`.
+- **Production use.** There is no automatic retry or fallback. The catalog syncs, but the parser does
+  not read RouteLLM's price and tool fields, so no model is eligible yet (see `dev/tickets/`).
 - **Non-RouteLLM providers.** Only Abacus RouteLLM is supported as an upstream.
 - **Responses API or Anthropic Messages formats.** Only `POST /v1/chat/completions` is handled.
 - **Guaranteeing which model really answered.** The router cannot stop a provider from substituting a

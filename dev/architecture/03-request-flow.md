@@ -24,8 +24,8 @@ back to a model outside the eligible set.
 
 ## Catalog sync
 
-1. `POST /admin/sync` calls the provider's `models` endpoint with the provider credential. The
-   startup and interval triggers are not working; see `02-components.md`.
+1. The sync calls the provider's `models` endpoint with the provider credential. It is triggered at
+   startup, on the `ROUTER_CATALOG_REFRESH_HOURS` interval, and by `POST /admin/sync`.
 2. The response is parsed into catalog records.
 3. In one transaction, all models are marked unavailable, then each parsed model is upserted and
    marked available.

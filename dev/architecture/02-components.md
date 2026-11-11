@@ -40,10 +40,13 @@ Fetches `GET /models` under the provider base URL, parses it, and replaces the a
 one transaction (`refreshCatalog` in `server.ts`). It runs on `POST /admin/sync`. A failed sync leaves
 the previous catalog in place.
 
-Known defect: the startup and interval sync in the `server.ts` entry block calls
-`getCatalogForStartup`, which is not defined, so it does not compile and the periodic sync does not
-run. `createRouterServer` keeps the catalog private. Until this is fixed, sync only via
-`POST /admin/sync`.
+The `server.ts` entry block also syncs at startup and every `ROUTER_CATALOG_REFRESH_HOURS`. It creates
+the `ModelCatalog` itself and passes the same instance to `createRouterServer` and to both syncs
+(fixed; see ERR-010 in `../tickets/`). After the fix, `/health` returned `modelCatalogCount: 132` and
+the log showed 132 records synchronised.
+
+Known limitation: the parser does not read the price and tool fields RouteLLM actually returns, so no
+synchronised model has a price and none is eligible. See ERR-001 to ERR-004 in `../tickets/`.
 
 ## Eligibility filter
 
