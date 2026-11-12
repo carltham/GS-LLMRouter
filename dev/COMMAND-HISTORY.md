@@ -2,6 +2,15 @@
 
 Verbatim messages sent by the user in this chat, newest first. Each number is the order in which the message was sent, so 1 is the first message that was sent. The pasted usage notice is included as part of the message in which it appeared. At most 100 records are kept; when a new message would exceed that, the oldest records are dropped.
 
+- **69.** `Give me a commit message for it all, 10 rows, copyable`
+- **68.** `Just go ahead`
+- **67.** `remove unnecessary test`
+- **66.** `delete unnecessary functions`
+- **65.** `Continue`
+- **64.** `Go ahead`
+- **63.** `Go ahead`
+- **62.** `I need a full TDD test coverage of the application`
+- **61.** `Move all tests to dev testing`
 - **60.** `I accepted this list :
 Don’t change project files unless explicitly asked.
 Don’t treat a question as permission to change code or setup.

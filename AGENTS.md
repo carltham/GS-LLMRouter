@@ -15,7 +15,8 @@ npm run dev
 npm start
 ```
 
-- `npm test` runs the TypeScript tests under `../dev/testing/*.test.ts` with `tsx --test`.
+- `npm test` runs the Vitest suite configured in `../dev/testing/vitest/vitest.config.ts`.
+- `npm run test:watch` starts Vitest in watch mode; `npm run test:coverage` writes text, HTML, and LCOV coverage reports under `GS-LLMRouter/coverage/`.
 - There are no lint, format, or single-test-file scripts defined in `package.json`.
 - For local setup and environment loading, follow `GS-LLMRouter/README.md`; keep real credentials in the ignored `.env` file.
 
@@ -41,7 +42,7 @@ npm start
 
 
 - Keep TypeScript in strict mode and preserve the existing Node.js ESM import style (relative source imports use `.js` extensions).
-- Tests use Node's built-in test runner and strict assertions, executed through `tsx`.
+- Tests use Vitest; keep test files under `dev/testing/vitest/` and use Vitest's `describe`, `it`, and `expect` APIs.
 - The current project phase is architecture: do not change application code unless the user asks. Keep architecture docs aligned with the code.
 - Record each user message in `dev/COMMAND-HISTORY.md` before acting, newest first, numbered in message order, with at most 100 records; redact secrets as `<redacted-api-key>`.
 - Treat committed content as public. Never write, print, or commit credentials; `.env.example` contains placeholders only.
@@ -50,5 +51,5 @@ npm start
 
 ## Gotchas
 
-- The test files are in `dev/testing/`, not `GS-LLMRouter/test/`; the package test script already points to their current location.
+- Vitest configuration and tests live in `dev/testing/vitest/`; run the test scripts from `GS-LLMRouter/` so the configured repository-root paths resolve correctly.
 - Runtime configuration is environment-based; see `.env.example` and the application README rather than adding secrets to source or docs.
