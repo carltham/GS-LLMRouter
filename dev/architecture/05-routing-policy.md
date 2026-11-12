@@ -24,7 +24,7 @@ A request is `complex` when any of these hold, otherwise `simple`:
   architecture, migrate, or security review.
 
 The keyword list, the length threshold and the quality-tier threshold are constants in
-`routing.ts` and `catalog.ts`, not configurable settings.
+`routing/complexity.ts` and `catalog/selection.ts`, not configurable settings.
 
 ## Selection among eligible models
 

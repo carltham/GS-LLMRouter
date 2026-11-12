@@ -37,7 +37,7 @@ The database file path is configuration. It is not committed.
 ## Catalog synchroniser
 
 Fetches `GET /models` under the provider base URL, parses it, and replaces the availability flags in
-one transaction (`refreshCatalog` in `server.ts`). It runs on `POST /admin/sync`. A failed sync leaves
+one transaction (`refreshCatalog` in `upstream/refresh-catalog.ts`). It runs on `POST /admin/sync`. A failed sync leaves
 the previous catalog in place.
 
 The `server.ts` entry block also syncs at startup and every `ROUTER_CATALOG_REFRESH_HOURS`. It creates
@@ -59,7 +59,7 @@ Applied before scoring. A model is eligible only when all hold:
 - Its API formats include chat completions, when formats are declared.
 - It is not an image, embedding, classification, audio or speech model.
 - For complex requests, its quality tier is at least 3 (an unset tier counts as 1). Simple requests
-  have no tier requirement. The threshold is a constant in `catalog.ts`.
+  have no tier requirement. The threshold is a constant in `catalog/selection.ts`.
 - For requests with tools, tool support is confirmed.
 - Its context window covers the estimated input plus output tokens.
 
@@ -70,7 +70,7 @@ Scores eligible models and picks one. See `05-routing-policy.md`.
 ## Provider adapters
 
 Not implemented as a component. The upstream call to Abacus RouteLLM is an inline `fetch` to
-`chat/completions` in `server.ts`, sent with the selected model ID and the provider credential. A
+`chat/completions` in `http/chat/forward-upstream.ts`, sent with the selected model ID and the provider credential. A
 shared adapter interface for Ollama and Claude is planned; see `07-multi-provider.md`.
 
 ## Decision recorder

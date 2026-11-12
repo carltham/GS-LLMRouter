@@ -2,7 +2,9 @@ import { mkdtempSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
-import { ModelCatalog, parseCatalog, type CatalogModel } from "../../../GS-LLMRouter/src/catalog.js";
+import { ModelCatalog } from "../../../GS-LLMRouter/src/catalog/model-catalog.js";
+import { parseCatalog } from "../../../GS-LLMRouter/src/catalog/parse-catalog.js";
+import type { CatalogModel } from "../../../GS-LLMRouter/src/catalog/types.js";
 
 let directory: string;
 let catalog: ModelCatalog;

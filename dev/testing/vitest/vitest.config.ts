@@ -19,7 +19,7 @@ export default {
       include: ["GS-LLMRouter/src/**/*.ts"],
       exclude: ["GS-LLMRouter/src/**/*.d.ts"],
       reporter: ["text", "html", "lcov"],
-      reportsDirectory: join(appRoot, "coverage"),
+      reportsDirectory: join(repositoryRoot, "dev/testing/vitest/coverage"),
     },
   },
 };

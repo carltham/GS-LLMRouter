@@ -2,6 +2,19 @@
 
 Verbatim messages sent by the user in this chat, newest first. Each number is the order in which the message was sent, so 1 is the first message that was sent. The pasted usage notice is included as part of the message in which it appeared. At most 100 records are kept; when a new message would exceed that, the oldest records are dropped.
 
+- **82.** `Excellent, Give me a commit message for it all, 10 rows, copyable`
+- **81.** `Cut up all files in  GS-LLMRouter/src/ into their concerns put them in grouping folders`
+- **80.** `How many concerns do GS-LLMRouter/src/catalog.ts have, the file looks very big`
+- **79.** `yes`
+- **78.** `it must be instrumented`
+- **77.** `Idiot delete it`
+- **76.** `Do it`
+- **75.** `Do it`
+- **74.** `Do it`
+- **73.** `For fuck sake make the move`
+- **72.** `For fuck sake make the move`
+- **71.** `coverage folder should be inside dev/testing/vitest/coverage or dev/testing/coverage depeding on if it is coverage for vitest or not`
+- **70.** `idiot, gitignore it immediately`
 - **69.** `Give me a commit message for it all, 10 rows, copyable`
 - **68.** `Just go ahead`
 - **67.** `remove unnecessary test`

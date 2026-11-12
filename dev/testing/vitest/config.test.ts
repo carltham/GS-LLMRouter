@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { loadConfig } from "../../../GS-LLMRouter/src/config.js";
+import { loadConfig } from "../../../GS-LLMRouter/src/config/load-config.js";
 
 const requiredEnv: NodeJS.ProcessEnv = {
   ABACUSAI_GS_EBS_BRAIN_KEY: "test-key",

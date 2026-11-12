@@ -3,9 +3,11 @@ import { mkdtemp, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
-import { ModelCatalog, type CatalogModel } from "../../../GS-LLMRouter/src/catalog.js";
-import { createRouterServer, refreshCatalog } from "../../../GS-LLMRouter/src/server.js";
-import type { RouterConfig } from "../../../GS-LLMRouter/src/config.js";
+import { ModelCatalog } from "../../../GS-LLMRouter/src/catalog/model-catalog.js";
+import type { CatalogModel } from "../../../GS-LLMRouter/src/catalog/types.js";
+import { createRouterServer } from "../../../GS-LLMRouter/src/http/create-server.js";
+import { refreshCatalog } from "../../../GS-LLMRouter/src/upstream/refresh-catalog.js";
+import type { RouterConfig } from "../../../GS-LLMRouter/src/config/router-config.js";
 
 const ADMIN_TOKEN = "test-admin-token";
 const API_KEY = "test-api-key";

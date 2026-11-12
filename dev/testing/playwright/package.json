@@ -1,0 +1,16 @@
+{
+  "name": "gs-llm-router-api-tests",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "report": "playwright show-report",
+    "test:coverage": "rm -rf .nyc_output coverage && COVERAGE_DIR=$PWD/.nyc_output playwright test && nyc report --temp-dir .nyc_output --report-dir coverage --reporter=html --reporter=text --include \"../../../GS-LLMRouter/src/**\" --exclude-after-remap=false --all=false"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.65.0",
+    "nyc": "^18.0.0"
+  }
+}

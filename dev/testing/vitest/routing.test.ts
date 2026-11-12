@@ -1,6 +1,8 @@
 import { describe, expect, it, vi } from "vitest";
-import { ModelCatalog, type DecisionRecord } from "../../../GS-LLMRouter/src/catalog.js";
-import { ROUTER_ALIAS, routeRequest, type ChatRequest } from "../../../GS-LLMRouter/src/routing.js";
+import { ModelCatalog } from "../../../GS-LLMRouter/src/catalog/model-catalog.js";
+import type { DecisionRecord } from "../../../GS-LLMRouter/src/catalog/types.js";
+import { routeRequest } from "../../../GS-LLMRouter/src/routing/route-request.js";
+import { ROUTER_ALIAS, type ChatRequest } from "../../../GS-LLMRouter/src/routing/types.js";
 
 function fakeCatalog(decision: DecisionRecord | null = {
   id: "decision-1",

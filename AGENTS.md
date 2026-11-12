@@ -16,15 +16,17 @@ npm start
 ```
 
 - `npm test` runs the Vitest suite configured in `../dev/testing/vitest/vitest.config.ts`.
-- `npm run test:watch` starts Vitest in watch mode; `npm run test:coverage` writes text, HTML, and LCOV coverage reports under `GS-LLMRouter/coverage/`.
+- `npm run test:watch` starts Vitest in watch mode; `npm run test:coverage` writes text, HTML, and LCOV coverage reports under `dev/testing/vitest/coverage/`.
+- External API tests use the separate Playwright package: from the repository root run `cd dev/testing/playwright && npm test`. Playwright starts the router and mock upstream server itself. Add coverage with `npm run test:coverage` (Istanbul-instrumented router, HTML report in `dev/testing/playwright/coverage/index.html`).
 - There are no lint, format, or single-test-file scripts defined in `package.json`.
 - For local setup and environment loading, follow `GS-LLMRouter/README.md`; keep real credentials in the ignored `.env` file.
 
 ## Layout
 
-- `GS-LLMRouter/src/` — router application: catalog, configuration, routing, and HTTP server.
+- `GS-LLMRouter/src/` — router application, grouped by concern: `catalog/` (parsing, SQLite schema, blacklist, sync, profiles, selection, feedback, `ModelCatalog` facade), `config/`, `routing/` (complexity, token estimates, `routeRequest`), `http/` (server, public, admin and chat routes), `upstream/` (catalog refresh), and `server.ts` (process entry point).
 - `GS-LLMRouter/` — application package, TypeScript config, README, and environment example.
-- `dev/testing/` — current test files; they are outside the application package directory.
+- `dev/testing/vitest/` — source-level Vitest tests and their coverage output.
+- `dev/testing/playwright/` — standalone Playwright package for external, black-box API tests.
 - `dev/architecture/` — architecture documentation that should remain consistent with implementation.
 - `dev/planning/`, `dev/tickets/`, `dev/TODO.md` — planning and issue tracking.
 
