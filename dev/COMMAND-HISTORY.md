@@ -1,7 +1,17 @@
 # User message history
 
-Verbatim messages sent by the user in this chat, newest first. Each number is the order in which the message was sent, so 1 is the first message. The pasted usage notice is included as part of the message in which it appeared. At most 100 records are kept; when a new message would exceed that, the oldest records are dropped.
+Verbatim messages sent by the user in this chat, newest first. Each number is the order in which the message was sent, so 1 is the first message that was sent. The pasted usage notice is included as part of the message in which it appeared. At most 100 records are kept; when a new message would exceed that, the oldest records are dropped.
 
+- **60.** `I accepted this list :
+Don’t change project files unless explicitly asked.
+Don’t treat a question as permission to change code or setup.
+Ask before installing dependencies or changing manifests, lockfiles, scripts, or configuration.
+Preserve unrelated working-tree changes.
+Stop immediately when asked to stop.
+Follow repository instructions.
+Verify changes before claiming they’re complete.`
+- **59.** `I do not see the bullet points`
+- **58.** `Add these bulletpoints in a suitable rules file`
 - **57.** `Give me a commit message for it all, 10 rows, copyable`
 - **56.** `update it all`
 - **55.** `including tickets`
