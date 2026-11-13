@@ -31,7 +31,7 @@ test("admin API requires its bearer token and lists the synchronized mock model"
   expect(response.ok()).toBeTruthy();
   expect(await response.json()).toMatchObject({
     data: [
-      expect.objectContaining({ id: "mock/provider-model", inputPrice: 1, outputPrice: 2 }),
+      expect.objectContaining({ id: "mock/provider-model", inputPrice: 2, outputPrice: 10 }),
     ],
     blacklist: ["smaug"],
   });

@@ -19,12 +19,13 @@ const mockUpstream = createServer(async (request, response) => {
       data: [{
         id: "mock/provider-model",
         name: "Mock Provider Model",
-        model_type: "text",
-        input_price_per_million_tokens: 1,
-        output_price_per_million_tokens: 2,
-        context_window: 32768,
-        api_formats: ["openai-chat-completions"],
-        supports_tools: true,
+        model_type: "text_generation",
+        input_token_rate: "0.000002",
+        output_token_rate: "0.00001",
+        context_length: 32768,
+        api_formats: ["openai", "anthropic"],
+        output_modalities: ["text"],
+        tools: true,
       }],
     }));
     return;

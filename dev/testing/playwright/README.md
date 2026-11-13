@@ -22,3 +22,11 @@ npm run test:coverage
 ```
 
 Playwright's built-in coverage only covers browser JavaScript, so this runs the router with Istanbul instrumentation instead. `test/coverage-preload.mjs` and `test/coverage-loader.mjs` are loaded into the router process when `COVERAGE_DIR` is set. The loader transpiles and instruments `GS-LLMRouter/src/**` with a source map, and the counters are written when Playwright stops the router. `nyc report` then prints a text summary and writes the HTML report to `coverage/index.html` in this folder. The app source and its `package.json` are not changed.
+
+## Live tests against the real AI service
+
+```bash
+npm run test:live
+```
+
+`tests/live/router-live.spec.ts` runs the same router against the real RouteLLM upstream instead of the mock. The provider key is read from `GS-LLMRouter/.env` through `node --env-file`; it is never copied into this package. The chat test sends one short completion capped at 16 output tokens, which spends a small amount of real credits. The offline `npm test` suite stays mock-only and untouched. To target a router you started yourself, set `PLAYWRIGHT_BASE_URL` and run `npm run test:live`.

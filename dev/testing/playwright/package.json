@@ -6,6 +6,7 @@
   "scripts": {
     "test": "playwright test",
     "test:headed": "playwright test --headed",
+    "test:live": "playwright test --config playwright.live.config.ts",
     "report": "playwright show-report",
     "test:coverage": "rm -rf .nyc_output coverage && COVERAGE_DIR=$PWD/.nyc_output playwright test && nyc report --temp-dir .nyc_output --report-dir coverage --reporter=html --reporter=text --include \"../../../GS-LLMRouter/src/**\" --exclude-after-remap=false --all=false"
   },

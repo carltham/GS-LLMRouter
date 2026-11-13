@@ -4,7 +4,7 @@ import type { ModelProfile } from "./types.js";
 export function listModels(db: DatabaseSync): ModelProfile[] {
   const rows = db.prepare(`
     SELECT id, name, input_price, output_price, context_window, api_formats,
-           tools_supported, quality_tier, enabled
+           output_modalities, tools_supported, quality_tier, enabled
     FROM models WHERE available = 1 ORDER BY id
   `).all() as Array<Record<string, unknown>>;
   return rows.map((row) => ({
@@ -14,6 +14,7 @@ export function listModels(db: DatabaseSync): ModelProfile[] {
     outputPrice: typeof row.output_price === "number" ? row.output_price : null,
     contextWindow: typeof row.context_window === "number" ? row.context_window : null,
     apiFormats: JSON.parse(String(row.api_formats)) as string[],
+    outputModalities: JSON.parse(String(row.output_modalities ?? "[]")) as string[],
     toolsSupported: typeof row.tools_supported === "number" ? row.tools_supported === 1 : null,
     qualityTier: typeof row.quality_tier === "number" ? row.quality_tier : null,
     enabled: row.enabled === 1,

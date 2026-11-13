@@ -4,6 +4,7 @@ const baseURL = process.env.PLAYWRIGHT_BASE_URL ?? "http://127.0.0.1:18765";
 
 export default defineConfig({
   testDir: "./tests",
+  testIgnore: "tests/live/**",
   fullyParallel: false,
   workers: 1,
   reporter: [["list"], ["html", { outputFolder: "test-results/html-report", open: "never" }]],

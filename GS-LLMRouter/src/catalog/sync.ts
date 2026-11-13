@@ -9,8 +9,8 @@ export function syncModels(db: DatabaseSync, models: CatalogModel[]): void {
     const upsert = db.prepare(`
       INSERT INTO models (
         id, name, model_type, input_price, output_price, context_window, api_formats,
-        tools_supported, raw_json, catalog_updated_at, available
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1)
+        output_modalities, tools_supported, raw_json, catalog_updated_at, available
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1)
       ON CONFLICT(id) DO UPDATE SET
         name = excluded.name,
         model_type = excluded.model_type,
@@ -18,6 +18,7 @@ export function syncModels(db: DatabaseSync, models: CatalogModel[]): void {
         output_price = excluded.output_price,
         context_window = excluded.context_window,
         api_formats = excluded.api_formats,
+        output_modalities = excluded.output_modalities,
         tools_supported = excluded.tools_supported,
         raw_json = excluded.raw_json,
         catalog_updated_at = excluded.catalog_updated_at,
@@ -32,6 +33,7 @@ export function syncModels(db: DatabaseSync, models: CatalogModel[]): void {
         model.outputPrice,
         model.contextWindow,
         JSON.stringify(model.apiFormats),
+        JSON.stringify(model.outputModalities),
         model.toolsSupported === null ? null : Number(model.toolsSupported),
         JSON.stringify(model.raw),
         now,

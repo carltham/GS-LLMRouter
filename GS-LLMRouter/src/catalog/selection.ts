@@ -14,8 +14,9 @@ function isEligible(
 ): boolean {
   if (!model.enabled || isBlacklisted(db, model)) return false;
   if (model.inputPrice === null || model.outputPrice === null) return false;
-  if (model.apiFormats.length && !model.apiFormats.some((format) => /chat.?completions|openai.?chat/i.test(format))) return false;
-  if (/image|embedding|classification|audio|speech/i.test(model.id)) return false;
+  if (model.apiFormats.length && !model.apiFormats.some((format) => /chat.?completions|openai/i.test(format))) return false;
+  if (/image|embedding|classification|audio|speech|tts|transcri|whisper|realtime/i.test(model.id)) return false;
+  if (model.outputModalities.length && !model.outputModalities.includes("text")) return false;
   if (complexity === "complex" && (model.qualityTier ?? 1) < 3) return false;
   if (hasTools && model.toolsSupported !== true) return false;
   if (model.contextWindow !== null && model.contextWindow < estimatedInputTokens + expectedOutputTokens) return false;

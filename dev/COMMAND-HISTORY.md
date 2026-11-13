@@ -2,6 +2,10 @@
 
 Verbatim messages sent by the user in this chat, newest first. Each number is the order in which the message was sent, so 1 is the first message that was sent. The pasted usage notice is included as part of the message in which it appeared. At most 100 records are kept; when a new message would exceed that, the oldest records are dropped.
 
+- **87.** `Give me a commit message for it all, 10 rows, copyable`
+- **86.** `What types of evaluations do we have?`
+- **85.** `Let's test  against the real AI service  also`
+- **83.** `Run all test`
 - **82.** `Excellent, Give me a commit message for it all, 10 rows, copyable`
 - **81.** `Cut up all files in  GS-LLMRouter/src/ into their concerns put them in grouping folders`
 - **80.** `How many concerns do GS-LLMRouter/src/catalog.ts have, the file looks very big`

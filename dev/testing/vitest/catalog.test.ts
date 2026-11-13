@@ -19,6 +19,7 @@ function model(overrides: Partial<CatalogModel> = {}): CatalogModel {
     outputPrice: 2,
     contextWindow: 16_000,
     apiFormats: ["openai-chat-completions"],
+    outputModalities: ["text"],
     toolsSupported: true,
     raw: { id },
     ...overrides,
@@ -62,9 +63,31 @@ describe("parseCatalog", () => {
     expect(parsed.map(({ inputPrice, outputPrice }) => [inputPrice, outputPrice])).toEqual([[0.5, 1.25], [2, 3]]);
   });
 
+  it("parses the real upstream token-rate prices into per-million prices", () => {
+    const parsed = parseCatalog({ data: [
+      { id: "route-llm", input_token_rate: "0.000002", output_token_rate: "0.00001" },
+      { id: "free", input_token_rate: 0, output_token_rate: "0" },
+      { id: "broken", input_token_rate: "abc" },
+    ] });
+    expect(parsed.map(({ inputPrice, outputPrice }) => [inputPrice, outputPrice]))
+      .toEqual([[2, 10], [0, 0], [null, null]]);
+  });
+
   it("rejects negative, non-finite, and malformed prices as unavailable", () => {
     const parsed = parseCatalog({ data: [{ id: "bad", input_price_per_million_tokens: -1, output_price_per_million_tokens: "NaN" }] });
     expect(parsed[0]).toMatchObject({ inputPrice: null, outputPrice: null });
+  });
+
+  it("reads tool support from the real upstream tools key", () => {
+    expect(parseCatalog({ data: [{ id: "real", tools: true }] })[0]).toMatchObject({ toolsSupported: true });
+  });
+
+  it("parses the real upstream output_modalities, defaulting to unknown", () => {
+    expect(parseCatalog({ data: [
+      { id: "chat", output_modalities: ["text", "image"] },
+      { id: "tts", output_modalities: ["audio"] },
+      { id: "unlisted" },
+    ] }).map(({ outputModalities }) => outputModalities)).toEqual([["text", "image"], ["audio"], []]);
   });
 
   it("parses context, API formats, tool support, and defaults", () => {
@@ -165,6 +188,25 @@ describe("ModelCatalog selection and feedback", () => {
       const inputTokens = label === "insufficient context" ? 15 : 1;
       const outputTokens = label === "insufficient context" ? 10 : 1;
       expect(catalog.select(complexity, tools, inputTokens, outputTokens), label).toBeNull();
+    }
+  });
+
+  it("accepts the real upstream OpenAI api_formats value as chat-capable", () => {
+    catalog.sync([model({ apiFormats: ["openai", "anthropic"] })]);
+    expect(catalog.select("simple", false, 1, 1)).not.toBeNull();
+  });
+
+  it("rejects models that cannot output text, like the real TTS and image models", () => {
+    catalog.sync([model({ id: "gemini-2.5-flash-preview-tts", outputModalities: ["audio"] })]);
+    expect(catalog.select("simple", false, 1, 1)).toBeNull();
+    catalog.sync([model({ id: "flux_pro", outputModalities: ["image"] })]);
+    expect(catalog.select("simple", false, 1, 1)).toBeNull();
+  });
+
+  it("rejects TTS and transcription models even when they claim text output", () => {
+    for (const id of ["gemini-2.5-flash-preview-tts", "gpt-transcribe", "gpt-realtime-whisper"]) {
+      catalog.sync([model({ id, outputModalities: ["text", "audio"] })]);
+      expect(catalog.select("simple", false, 1, 1), id).toBeNull();
     }
   });
 

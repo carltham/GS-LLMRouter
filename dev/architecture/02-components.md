@@ -57,7 +57,7 @@ Applied before scoring. A model is eligible only when all hold:
 - It does not match any blacklist pattern.
 - It has a known input and output price.
 - Its API formats include chat completions, when formats are declared.
-- It is not an image, embedding, classification, audio or speech model.
+- Its output modalities include text, and its id or name is not an image, embedding, classification, audio, speech, TTS, transcription, whisper or realtime model.
 - For complex requests, its quality tier is at least 3 (an unset tier counts as 1). Simple requests
   have no tier requirement. The threshold is a constant in `catalog/selection.ts`.
 - For requests with tools, tool support is confirmed.

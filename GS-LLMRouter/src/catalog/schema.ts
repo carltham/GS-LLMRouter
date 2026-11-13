@@ -15,6 +15,7 @@ export function openDatabase(path: string): DatabaseSync {
       output_price REAL,
       context_window INTEGER,
       api_formats TEXT NOT NULL,
+      output_modalities TEXT NOT NULL DEFAULT '[]',
       tools_supported INTEGER,
       quality_tier INTEGER,
       enabled INTEGER NOT NULL DEFAULT 1,
@@ -41,5 +42,10 @@ export function openDatabase(path: string): DatabaseSync {
     );
     CREATE INDEX IF NOT EXISTS decisions_model_complexity ON decisions(model_id, complexity);
   `);
+  // Databases created before output_modalities existed need the column added in place.
+  const columns = db.prepare("PRAGMA table_info(models)").all() as Array<{ name: string }>;
+  if (!columns.some(({ name }) => name === "output_modalities")) {
+    db.exec("ALTER TABLE models ADD COLUMN output_modalities TEXT NOT NULL DEFAULT '[]'");
+  }
   return db;
 }

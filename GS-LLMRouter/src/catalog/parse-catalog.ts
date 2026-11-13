@@ -30,6 +30,12 @@ function priceValue(source: Record<string, unknown>, keys: string[]): number | n
   return numeric(firstValue(pricing, keys));
 }
 
+// The live upstream quotes input_token_rate/output_token_rate as per-token decimals.
+function perMillionPrice(source: Record<string, unknown>, keys: string[]): number | null {
+  const rate = numeric(firstValue(source, keys));
+  return rate === null ? null : rate * 1_000_000;
+}
+
 export function parseCatalog(payload: unknown): CatalogModel[] {
   const root = object(payload);
   const rawModels = Array.isArray(payload) ? payload : root?.data;
@@ -46,20 +52,25 @@ export function parseCatalog(payload: unknown): CatalogModel[] {
     const apiFormats = Array.isArray(apiFormatsValue)
       ? apiFormatsValue.filter((format): format is string => typeof format === "string")
       : [];
+    const outputModalitiesValue = item.output_modalities;
+    const outputModalities = Array.isArray(outputModalitiesValue)
+      ? outputModalitiesValue.filter((modality): modality is string => typeof modality === "string")
+      : [];
     const modelTypeValue = firstValue(item, ["model_type", "type"]);
     const modelType = typeof modelTypeValue === "string" ? modelTypeValue : "text";
     const nameValue = item.name;
     const contextWindow = numeric(firstValue(item, ["context_window", "context_length", "max_context_length"]));
-    const toolsValue = firstValue(item, ["supports_tools", "tool_calling", "function_calling"]);
+    const toolsValue = firstValue(item, ["supports_tools", "tool_calling", "function_calling", "tools"]);
 
     models.push({
       id,
       name: typeof nameValue === "string" ? nameValue : id,
       modelType,
-      inputPrice: priceValue(item, ["input_price_per_million_tokens", "input_cost_per_1m_tokens", "input_per_1m_tokens", "prompt_price_per_1m_tokens", "prompt"]),
-      outputPrice: priceValue(item, ["output_price_per_million_tokens", "output_cost_per_1m_tokens", "output_per_1m_tokens", "completion_price_per_1m_tokens", "completion"]),
+      inputPrice: priceValue(item, ["input_price_per_million_tokens", "input_cost_per_1m_tokens", "input_per_1m_tokens", "prompt_price_per_1m_tokens", "prompt"]) ?? perMillionPrice(item, ["input_token_rate"]),
+      outputPrice: priceValue(item, ["output_price_per_million_tokens", "output_cost_per_1m_tokens", "output_per_1m_tokens", "completion_price_per_1m_tokens", "completion"]) ?? perMillionPrice(item, ["output_token_rate"]),
       contextWindow,
       apiFormats,
+      outputModalities,
       toolsSupported: typeof toolsValue === "boolean" ? toolsValue : null,
       raw,
     });

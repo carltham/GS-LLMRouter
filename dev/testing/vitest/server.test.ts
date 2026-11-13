@@ -22,6 +22,7 @@ function makeModel(overrides: Partial<CatalogModel> = {}): CatalogModel {
     outputPrice: 2,
     contextWindow: 32_000,
     apiFormats: ["openai-chat-completions"],
+    outputModalities: ["text"],
     toolsSupported: true,
     raw: { id },
     ...overrides,

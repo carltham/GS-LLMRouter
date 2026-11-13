@@ -17,7 +17,7 @@ npm start
 
 - `npm test` runs the Vitest suite configured in `../dev/testing/vitest/vitest.config.ts`.
 - `npm run test:watch` starts Vitest in watch mode; `npm run test:coverage` writes text, HTML, and LCOV coverage reports under `dev/testing/vitest/coverage/`.
-- External API tests use the separate Playwright package: from the repository root run `cd dev/testing/playwright && npm test`. Playwright starts the router and mock upstream server itself. Add coverage with `npm run test:coverage` (Istanbul-instrumented router, HTML report in `dev/testing/playwright/coverage/index.html`).
+- External API tests use the separate Playwright package: from the repository root run `cd dev/testing/playwright && npm test`. Playwright starts the router and mock upstream server itself. Add coverage with `npm run test:coverage` (Istanbul-instrumented router, HTML report in `dev/testing/playwright/coverage/index.html`). Live tests against the real RouteLLM upstream run with `npm run test:live`; the provider key comes from `GS-LLMRouter/.env` and the chat test spends a small amount of real credits.
 - There are no lint, format, or single-test-file scripts defined in `package.json`.
 - For local setup and environment loading, follow `GS-LLMRouter/README.md`; keep real credentials in the ignored `.env` file.
 

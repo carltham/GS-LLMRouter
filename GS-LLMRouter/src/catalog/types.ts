@@ -8,6 +8,7 @@ export interface CatalogModel {
   outputPrice: number | null;
   contextWindow: number | null;
   apiFormats: string[];
+  outputModalities: string[];
   toolsSupported: boolean | null;
   raw: unknown;
 }
@@ -19,6 +20,7 @@ export interface ModelProfile {
   outputPrice: number | null;
   contextWindow: number | null;
   apiFormats: string[];
+  outputModalities: string[];
   toolsSupported: boolean | null;
   qualityTier: number | null;
   enabled: boolean;
