@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "minimumWeightedScore": 0.9,
+  "allRequiredCasesMustPass": true,
+  "requireReturnedModelMatch": true,
+  "categories": {
+    "instruction-following": { "required": true },
+    "reasoning": { "required": true },
+    "structured-output": { "required": true }
+  },
+  "operationalLimits": {
+    "maxCaseLatencyMs": 60000,
+    "maxCompletionTokensPerCase": 128
+  },
+  "note": "These are initial smoke-evaluation gates, not a statistically validated benchmark or a safety certification."
+}

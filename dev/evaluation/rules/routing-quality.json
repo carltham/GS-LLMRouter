@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "requiredScenarios": ["simple-request", "complex-keyword-request", "tool-capability-request"],
+  "requireDecisionHeader": true,
+  "requireKnownEnabledModel": true,
+  "requireKnownPrices": true,
+  "requireTextOutput": true,
+  "requireQualityTierForComplex": 3,
+  "requireToolSupportWhenToolsRequested": true,
+  "requireNotBlacklisted": true,
+  "note": "A routing scenario passes only if the selected catalog model satisfies every applicable policy constraint."
+}

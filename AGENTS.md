@@ -27,6 +27,7 @@ npm start
 - `GS-LLMRouter/` — application package, TypeScript config, README, and environment example.
 - `dev/testing/vitest/` — source-level Vitest tests and their coverage output.
 - `dev/testing/playwright/` — standalone Playwright package for external, black-box API tests.
+- `dev/evaluation/` — standalone model-quality and routing-quality evaluation cases, scoring rules, runner, and ignored result reports. Live evaluation commands and credit implications are documented in its README.
 - `dev/architecture/` — architecture documentation that should remain consistent with implementation.
 - `dev/planning/`, `dev/tickets/`, `dev/TODO.md` — planning and issue tracking.
 

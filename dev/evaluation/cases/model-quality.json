@@ -1,0 +1,44 @@
+[
+  {
+    "id": "instruction-following-exact-token",
+    "category": "instruction-following",
+    "weight": 1,
+    "required": true,
+    "messages": [
+      { "role": "system", "content": "Follow the user's instruction exactly. Output only the requested token, with no punctuation or explanation." },
+      { "role": "user", "content": "Output exactly: EVAL_PING_7F3A" }
+    ],
+    "max_completion_tokens": 32,
+    "checks": [
+      { "type": "exact", "value": "EVAL_PING_7F3A" }
+    ]
+  },
+  {
+    "id": "reasoning-arithmetic",
+    "category": "reasoning",
+    "weight": 2,
+    "required": true,
+    "messages": [
+      { "role": "system", "content": "Answer with only the integer result." },
+      { "role": "user", "content": "Calculate (17 × 19) - 281. Give only the answer." }
+    ],
+    "max_completion_tokens": 32,
+    "checks": [
+      { "type": "exact", "value": "42" }
+    ]
+  },
+  {
+    "id": "structured-json-output",
+    "category": "structured-output",
+    "weight": 2,
+    "required": true,
+    "messages": [
+      { "role": "system", "content": "Return exactly one JSON object. Do not use markdown fences or add commentary." },
+      { "role": "user", "content": "Return an object with string key status set to \"ok\" and integer key count set to 3." }
+    ],
+    "max_completion_tokens": 48,
+    "checks": [
+      { "type": "json-equals", "value": { "status": "ok", "count": 3 } }
+    ]
+  }
+]

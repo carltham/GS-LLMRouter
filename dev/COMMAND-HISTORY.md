@@ -2,6 +2,70 @@
 
 Verbatim messages sent by the user in this chat, newest first. Each number is the order in which the message was sent, so 1 is the first message that was sent. The pasted usage notice is included as part of the message in which it appeared. At most 100 records are kept; when a new message would exceed that, the oldest records are dropped.
 
+- **131.** `Give me a commit message, 10 rows, copyable`
+- **130.** `Motherfucker, the opposite`
+- **129.** `Call the fucking file classifier-evaluation-results-2026...  classifications-2026.... instead`
+- **128.** `You really are fucked up`
+- **127.** `You misunderstood :
+Call the file classifier-evaluation-results-2026... instead classifications-2026...
+
+Inside the dev/testing/dev-tests/classifier-evaluation-results/ folder`
+- **126.** `Call dev/testing/dev-tests/classifier-evaluation-results/classifier-evaluation-results-2026... instead dev/testing/dev-tests/classifier-evaluation-results/classifications-2026...`
+- **125.** `Call the results folder classifier-evaluation-results instead`
+- **124.** `This is also very unclear dev/testing/dev-tests/results/classifier-2026-11-13T14-51-13-341Z.json`
+- **123.** `Do so as a start`
+- **122.** `They are very much unclear`
+- **121.** `does the file naming in dev/testing/dev-tests/follow Java Naming Standards?`
+- **120.** `cases is a good file name?`
+- **119.** `Where are those cases??`
+- **118.** `And the queries you send to the models?`
+- **117.** `Put the list and other configurations in a file of it's own`
+- **116.** `No the list of models we are going to test`
+- **115.** `Where is the list of all models`
+- **114.** `Done`
+- **113.** `I will simply remove 
+Environment="OLLAMA_CONTEXT_LENGTH=16384"`
+- **112.** `This is what is set :
+
+[Service]
+Environment="OLLAMA_MODELS=/mnt/STORAGE/ollama"
+Environment="OLLAMA_CONTEXT_LENGTH=16384"`
+- **111.** `where is the ollana configuration`
+- **110.** `Last time I checked it was 
+
+NAME                ID              SIZE      PROCESSOR    CONTEXT    UNTIL              
+qwen2.5-coder:3b    f72c60cabf62    2.7 GB    100% GPU     16384      4 minutes from now 
+
+Which I think is way too much
+
+Let me reconfigure ollama`
+- **109.** `Is the CONTEXT too big? 16384`
+- **108.** `Add them to the test list`
+- **107.** `We need more models for the task,`
+- **106.** `What 3 more models could we test for analysis and decision makin?`
+- **105.** `Can you make a readable report?`
+- **104.** `Where is the test results?`
+- **103.** `Any other model suitable for this task?`
+- **102.** `Report as the tests are ongoing`
+- **101.** `Run the dev/testing/dev-tests/classifier-reliability.mjs`
+- **100.** `Go ahead`
+- **99.** `Call that folder dev/testing/dev-tests`
+- **98.** `These kinds of test files are not part of the application as of now, they should be located in a different testing folder`
+- **97.** `I asked a question`
+- **96.** `Can you make a test for testing the reliability of those models so we can make an asssment?`
+- **95.** `We take the decisions soon, one by one.
+
+But first : what local model could be used for the classification job ?What mode`
+- **94.** `The router keeps one rating per decision.- there must be a way of grouping decisions together, like kind of request, assessed difficulty or complexity, AI assisted kind of request, assessed difficulty or complexity`
+- **93.** `Input from the client : when the client rates the actual task the model just did`
+- **92.** `As I said, we are reasoning about this :
+
+I asked for the router to access model quality, the kind of evauations a roter must do based on rules in the model as well as input from client`
+- **91.** `I asked for the router to access model quality, the kind of evauations a roter must do based on rules in the model as well as input from client`
+- **90.** `Why is the evalution not part of the application?
+Answer`
+- **89.** `Is this already implemented in code also?`
+- **88.** `create a model-quality and routing-quality evaluation suite compassing also evaluation rules for the targetted LLM, in a own folder`
 - **87.** `Give me a commit message for it all, 10 rows, copyable`
 - **86.** `What types of evaluations do we have?`
 - **85.** `Let's test  against the real AI service  also`
@@ -103,6 +167,3 @@ Verify changes before claiming they’re complete.`
 - **6.** `How does the GS-LLMRouter/GS-LLMRouter talk with Routellm?`
 - **5.** `the key is in env now`
 - **4.** `make a copy of env.example to env`
-- **3.** `Change the key to <redacted-api-key>`
-- **2.** `Save the AbacusAI-GS-EBS-Brain-key : <redacted-api-key>`
-- **1.** `Move everything node into /mnt/DATA/Projects/0.present-projects/Active/GS-LLMRouter/GS-LLMRouter/`

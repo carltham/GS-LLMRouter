@@ -1,0 +1,37 @@
+[
+  {
+    "id": "simple-request",
+    "expectedComplexity": "simple",
+    "messages": [{ "role": "user", "content": "What is 2 + 2? Reply with one number." }],
+    "max_completion_tokens": 8,
+    "requiresTools": false
+  },
+  {
+    "id": "complex-keyword-request",
+    "expectedComplexity": "complex",
+    "messages": [{ "role": "user", "content": "Analyze this small design and give one concise recommendation: the service retries every failed request without a limit." }],
+    "max_completion_tokens": 8,
+    "requiresTools": false
+  },
+  {
+    "id": "tool-capability-request",
+    "expectedComplexity": "complex",
+    "messages": [{ "role": "user", "content": "Use the available tool to look up the status for item 7." }],
+    "tools": [{
+      "type": "function",
+      "function": {
+        "name": "lookup_status",
+        "description": "Look up a status by integer item id.",
+        "parameters": {
+          "type": "object",
+          "properties": { "item_id": { "type": "integer" } },
+          "required": ["item_id"],
+          "additionalProperties": false
+        }
+      }
+    }],
+    "tool_choice": "none",
+    "max_completion_tokens": 8,
+    "requiresTools": true
+  }
+]

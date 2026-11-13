@@ -1,0 +1,25 @@
+{
+  "models": [
+    "qwen3.5:2b",
+    "qwen3.5:4b",
+    "qwen2.5-coder:3b",
+    "llama3.2:3b",
+    "gemma3:4b",
+    "phi4-mini",
+    "granite3.3:2b",
+    "qwen3:4b",
+    "mistral:7b"
+  ],
+  "repeats": 3,
+  "host": "http://localhost:11434",
+  "timeoutMs": 120000,
+  "generation": {
+    "temperature": 0,
+    "numPredict": 60,
+    "think": false,
+    "format": "json"
+  },
+  "kinds": ["chat", "translation", "summarisation", "extraction", "code", "reasoning"],
+  "difficultyLevels": ["simple", "moderate", "complex"],
+  "systemPrompt": "Classify the user's request. Reply with JSON only, using exactly one allowed kind and difficulty level. Do not answer the request."
+}
